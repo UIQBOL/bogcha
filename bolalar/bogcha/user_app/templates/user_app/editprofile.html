@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Edit Profile page</h1>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-sm-4" style="text-align: center;">
+            <a href="{% url 'userprofile' %}" class="btn btn-primary">&#8592 Back to profile </a>
+            {% if customer.image.url%}
+                <img class="card-img-top" src="{{ request.user.customer.profilePicture.url }}" style="width: 75%;" alt="Profile picture">
+            {% endif %}
+        </div>
+
+        <div class="col-sm-8">
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ myform.as_p }}
+                <input type="submit" class="btn btn-success" value="Save Profile" />
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

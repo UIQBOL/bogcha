@@ -1,0 +1,14 @@
+{%extends 'kid/main.html'%}
+{%load static%}
+
+{%block content%}
+<div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+    <form action="" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <label>Add new staff</label>
+        <hr>
+        {{form}}
+        <input type="submit" name="staff" value="Add staff">
+    </form>
+</div>
+{%endblock%}

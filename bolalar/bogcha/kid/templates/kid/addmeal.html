@@ -1,0 +1,14 @@
+{%extends 'kid/main.html'%}
+{%load static%}
+
+{%block content%}
+<div class="container-fluid bg-primary px-0 px-md-5 mb-5">
+    <form action="" method="post">
+        {%csrf_token%}
+        <label>Add new Meal</label>
+        <hr>
+        {{mform}}
+        <input type="submit" name="meal" value="Add meal">
+    </form>
+</div>
+{%endblock%}

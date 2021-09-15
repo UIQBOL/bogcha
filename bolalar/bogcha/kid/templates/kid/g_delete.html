@@ -1,0 +1,12 @@
+{%extends 'kid/main.html'%}
+{%load static%}
+{%block content%}
+
+<form action="{%url 'g_delete' group.id%}" method="post">
+    {%csrf_token%}
+    <a href="{%url 'group'%}">Cancel</a>
+    <input type="submit" name="Confirm" value="Delete Group">
+
+</form>
+
+{%endblock%}

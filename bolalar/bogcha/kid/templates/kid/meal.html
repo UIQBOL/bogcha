@@ -1,0 +1,30 @@
+{%extends 'kid/main.html'%}
+
+{%block content%}
+<p>Meal Page</p>
+<div class="container-fluid">
+    <a class="btn btn-primary btn-sm btn-inline" href="{% url 'm_add'%}">Add Meal</a>
+    <table class="table table-striped table-light">
+        <tr>
+            <th>Name</th>
+            <th>Drink</th>
+            <th>Day</th>
+            <th>Chef</th>
+            <th>Time</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>   
+        {%for item in meal%}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.drink}}</td>
+            <td>{{item.day}}</td>
+            <td>{{item.chef}}</td>
+            <td>{{item.time}}</td>
+            <td><a class="btn btn-success btn-sm btn-block" href="{%url 'm_update' item.id%}">Update</a></td>
+            <td><a class="btn btn-danger btn-sm btn-block" href="{% url 'm_delete' item.id %}">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+{%endblock%}

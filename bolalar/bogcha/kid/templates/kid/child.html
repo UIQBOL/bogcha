@@ -1,0 +1,28 @@
+{%extends 'kid/main.html'%}
+
+{%block content%}
+<p>Children Page</p>
+<div class="container-fluid">
+    <a class="btn btn-primary btn-sm btn-inline" href="{% url 'c_add'%}">Add Child</a>
+    <table class="table table-striped table-light">
+        <tr>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>Age</th>
+            <th>Group</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+        {%for item in child%}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.lastname}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.group}}</td>
+            <td><a class="btn btn-success btn-sm btn-block" href="{%url 'child_u' item.id%}">Update</a></td>
+            <td><a class="btn btn-danger btn-sm btn-block" href="{% url 'c_delete' item.id %}">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+{%endblock%}

@@ -1,0 +1,31 @@
+{%extends 'kid/main.html'%}
+
+{%block content%}
+<p>Blog Page</p>
+<div class="container-fluid">
+    <a class="btn btn-primary btn-sm btn-inline" href="{% url 'b_add'%}">Add Blog</a>
+    <table class="table table-striped table-light">
+        <tr>
+            <th>TITLE</th>
+            <th>BODY</th>
+            <th>IMAGE</th>
+            <th>AUTHOR</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>   
+        {%for item in news%}
+        <tr>
+            <td>{{item.head}}</td>
+            <td>{{item.body}}</td>
+            <td>{% if news.image %}
+                <img src="{{ news.image.url|default_if_none:'#' }}"  class="img-responsive thumbnail " alt="img">    
+
+            {% endif %}</td>
+            <td>{{item.autor}}</td>
+            <td><a class="btn btn-success btn-sm btn-block" href="{%url 'b_update' item.id%}">Update</a></td>
+            <td><a class="btn btn-danger btn-sm btn-block" href="{% url 'b_delete' item.id %}">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+{%endblock%}

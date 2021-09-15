@@ -1,0 +1,62 @@
+<!-- Navbar Start -->
+{%load i18n%}
+<div class="container-fluid bg-light position-relative shadow">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
+        
+        <a href="" class="navbar-brand font-weight-bold text-secondary" style="font-size: 50px;">
+            <i class="flaticon-043-teddy-bear"></i>
+            <span class="text-primary">KidKinder</span>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav font-weight-bold mx-auto py-0">
+                <a href="{% url 'main' %}" class="nav-item nav-link active">{% trans 'Home' %}</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link">{% trans 'About'%}</a>
+                <a href="{% url 'class1' %}" class="nav-item nav-link">{% trans 'Classes'%}</a>
+                <a href="{% url 'team' %}" class="nav-item nav-link">{% trans 'Teachers'%}</a>
+                <a href="{% url 'gallery' %}" class="nav-item nav-link">{% trans 'Gallery'%}</a>
+                 <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{% trans 'Pages'%}</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="{% url 'staff' %}" class="dropdown-item">{% trans 'Staff'%}</a>
+                            <a href="{% url 'child' %}" class="dropdown-item">{% trans 'Children'%}</a>
+                            <a href="{% url 'group' %}" class="dropdown-item">{% trans 'Group'%}</a>
+                            <a href="{% url 'news' %}" class="dropdown-item">{% trans 'Blog'%}</a>
+                            <a href="{% url 'meal' %}" class="dropdown-item">{% trans 'Meal'%}</a>
+                            <a href="{% url 'picture' %}" class="dropdown-item">{% trans 'Picture'%}</a>
+                        </div>
+                    </div>
+                <a href="{% url 'blog' %}" class="nav-item nav-link">{% trans 'Blog Grid'%}</a>
+                <a href="{% url 'contact' %}" class="nav-item nav-link">{% trans 'Contact'%}</a>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div>
+                <a href="{% url 'userlogout'%}" class="btn btn-primary px-4">{% trans 'LogOut'%}</a>
+                <a href="{% url 'userprofile'%}" class="btn btn-outline-primary">{{request.user.username}}</a>
+            </div>
+            {% else %}
+            <div>
+                <a href="{% url 'userLogin'%}" class="btn btn-primary px-4">{% trans 'Log In'%}</a>
+            </div>
+            <div>
+                <ul class="navbar-nav my-2 my-lg-0">
+                    {% for language in languages %}
+                        <li class="nav-item">
+                            <form class="form-inline my-2 my-lg-0" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="lang" value="{{language.0}}">
+                                <input type="submit" class="btn btn-outline-light"
+                                       value="{{language.1}}">
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+    </nav>
+</div>
+<!-- Navbar End -->

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User profile</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>This is {{ request.user }} Profile page</h1>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-sm-8">
+            <div class="card">
+                {% if customer.image.url%}
+                <img class="card-img-top" src="{{ request.user.customer.profilePicture.url }}" style="width: 25%;" alt="Profile picture">
+                {% endif %}
+                <div class="card-body">
+                  <h3 class="card-title">Detail information</h3>
+                  <p class="card-text"><label>Name: </label> {{ request.user.customer.name }}</p>
+                  <p class="card-text"><label>Phone: </label> {{ request.user.customer.phone }}</p>
+                  <p class="card-text"><label>Organization: </label> {{ request.user.customer.organization }}</p>
+                  <p class="card-text"><label>Address: </label> {{ request.user.customer.address }}</p>
+
+                  <a href="{% url 'editprofile' %}" class="btn btn-primary">Edit profile</a>
+                  <a href="{% url 'userlogout' %}" class="btn btn-primary">Logout</a>
+                </div>
+              </div>
+        </div>
+
+    </div>
+</body>
+</html>
